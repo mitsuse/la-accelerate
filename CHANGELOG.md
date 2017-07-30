@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Support cocoapods.
+
 
 ## 0.6.0
 

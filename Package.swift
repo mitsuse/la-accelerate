@@ -3,5 +3,8 @@
 import PackageDescription
 
 let package = Package(
-    name: "LaAccelerate"
+    name: "LaAccelerate",
+    dependencies: [
+        .Package(url: "https://github.com/mitsuse/la", majorVersion: 0, minor: 6),
+    ]
 )

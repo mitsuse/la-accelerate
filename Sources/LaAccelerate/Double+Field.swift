@@ -4,7 +4,7 @@ import Accelerate
 extension Double: Field {
     public static let zero: Double = 0
 
-    public static func matrix_identity<M: Size, N: Size>() -> Matrix<M, N, Double> {
+    public static func matrix_identity<M, N>() -> Matrix<M, N, Double> {
         var entries = Array<Double>(repeating: 0, count: Int(M.value * N.value))
         (0..<M.value)
             .lazy
@@ -13,29 +13,29 @@ extension Double: Field {
         return Matrix.create(entries)!
     }
 
-    public static func matrix_additiveInvese<M: Size, N: Size>(of a: Matrix<M, N, Double>) -> Matrix<M, N, Double> {
+    public static func matrix_additiveInvese<M, N>(of a: Matrix<M, N, Double>) -> Matrix<M, N, Double> {
         return matrix_scalar(a, -1)
     }
 
-    public static func matrix_add<M: Size, N: Size>(_ a: Matrix<M, N, Double>, _ b : Matrix<M, N, Double>) -> Matrix<M, N, Double> {
+    public static func matrix_add<M, N>(_ a: Matrix<M, N, Double>, _ b : Matrix<M, N, Double>) -> Matrix<M, N, Double> {
         var entries = a.entries
         cblas_daxpy(M.value * N.value, 1.0, b.entries, 1, &entries, 1)
         return Matrix.create(entries)!
     }
 
-    public static func matrix_subtract<M: Size, N: Size>(_ a: Matrix<M, N, Double>, _ b: Matrix<M, N, Double>) -> Matrix<M, N, Double> {
+    public static func matrix_subtract<M, N>(_ a: Matrix<M, N, Double>, _ b: Matrix<M, N, Double>) -> Matrix<M, N, Double> {
         var entries = a.entries
         cblas_daxpy(M.value * N.value, -1.0, b.entries, 1, &entries, 1)
         return Matrix.create(entries)!
     }
 
-    public static func matrix_scalar<M: Size, N: Size>(_ b: Matrix<M, N, Double>, _ a: Double) -> Matrix<M, N, Double> {
+    public static func matrix_scalar<M, N>(_ b: Matrix<M, N, Double>, _ a: Double) -> Matrix<M, N, Double> {
         var entries = Array<Double>(repeating: 0, count: Int(M.value * N.value))
         cblas_daxpy(M.value * N.value, a, b.entries, 1, &entries, 1)
         return Matrix.create(entries)!
     }
 
-    public static func matrix_multiply<M: Size, N: Size, P: Size>(_ a: Matrix<M, N, Double>, _ b: Matrix<N, P, Double>) -> Matrix<M, P, Double> {
+    public static func matrix_multiply<M, N, P>(_ a: Matrix<M, N, Double>, _ b: Matrix<N, P, Double>) -> Matrix<M, P, Double> {
         var entries = Array<Double>(repeating: 0, count: Int(M.value * P.value))
         cblas_dgemm(
             CblasRowMajor,
@@ -56,7 +56,7 @@ extension Double: Field {
         return Matrix.create(entries)!
     }
 
-    public static func matrix_transpose<M: Size, N: Size>(_ a: Matrix<M, N, Double>) -> Matrix<N, M, Double> {
+    public static func matrix_transpose<M, N>(_ a: Matrix<M, N, Double>) -> Matrix<N, M, Double> {
         var entries = Array<Double>(repeating: 0, count: Int(N.value * M.value))
         cblas_dgemm(
             CblasRowMajor,

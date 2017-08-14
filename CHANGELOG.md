@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Migrate to Swift 4.
+
 
 ## 0.6.1
 

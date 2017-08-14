@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'LaAccelerate'
-  spec.version = '0.6.0'
+  spec.version = '0.7.0'
   spec.homepage = 'https://github.com/mitsuse/la-accelerate'
   spec.authors = {
     'Tomoya Kose' => 'tomoya@mitsuse.jp'
@@ -9,5 +9,5 @@ Pod::Spec.new do |spec|
   spec.source = { :git => 'https://github.com/mitsuse/la-accelerate.git' }
   spec.ios.deployment_target = '8.0'
   spec.source_files = 'Sources/**/*.swift'
-  spec.dependency 'La', '~> 0.6.1'
+  spec.dependency 'La', '~> 0.7.0'
 end

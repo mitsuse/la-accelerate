@@ -1,10 +1,18 @@
-// swift-tools-version:3.1
+// swift-tools-version:4.0
 
 import PackageDescription
 
 let package = Package(
     name: "LaAccelerate",
+    products: [
+        .library(name: "LaAccelerate", targets: ["LaAccelerate"]),
+    ],
     dependencies: [
-        .Package(url: "https://github.com/mitsuse/la", majorVersion: 0, minor: 7),
-    ]
+        .package(url: "https://github.com/mitsuse/la", .upToNextMinor(from: "0.9.1")),
+    ],
+    targets: [
+        .target(name: "LaAccelerate", dependencies: ["La"]),
+        .testTarget(name: "LaAccelerateTests", dependencies: ["LaAccelerate"]),
+    ],
+    swiftLanguageVersions: [4]
 )

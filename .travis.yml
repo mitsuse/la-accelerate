@@ -4,6 +4,4 @@ matrix:
       language: swift
       osx_image: xcode9
 script:
-  - pod repo add la https://github.com/mitsuse/pods-la.git
-  - pod lib lint --allow-warnings --sources='la' --verbose
-  - swift test
+  - swift test --verbose

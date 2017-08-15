@@ -1,9 +1,12 @@
 ## Unreleased
 
+- Migrate to Swift 4.
+    - Remove CocoaPods support temporarily.
+
 
 ## 0.7.0
 
-- Migrate to Swift 4.
+- Build with Xcode 9.0.
 
 
 ## 0.6.1
